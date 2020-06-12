@@ -2,8 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-    <h1>Recent Jobs</h1>
+    <div class="col-md-12">
+        <div class="company-profile">
+            <img src="{{asset('cover/tumblr-image-sizes-banner.png')}}" style="width: 100%;" alt="">
+            <div class="company-desc">
+            <img src="{{ asset('avatar/man.jpg')}}" style="width: 100" alt="">
+                <h1>Company name</h1>
+                <p><strong>Slogan</strong>-{{ $company->slogan }}&nbsp;Adress-{{ $company->address }}&nbsp; Phone-{{ $company->phone }}&nbsp; Website-{{ $company->website }}</p>
+            </div>
+        </div>
+
         <table class="table">
             <thead>
                 <th></th>
@@ -13,7 +21,7 @@
                 <th></th>
             </thead>
             <tbody>
-                @foreach($jobs as $job)
+                @foreach($company->jobs as $job)
                 <tr>
                     <td><img src="{{ asset('avatar/man.jpg')}}" width="80"></td>
                     <td>Position: {{ $job->position }}
@@ -29,11 +37,7 @@
                 @endforeach
             </tbody>
         </table>
+
     </div>
 </div>
 @endsection
-<style>
-.fa {
-    color: #4183D7;
-}
-</style>
