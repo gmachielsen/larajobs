@@ -4,10 +4,17 @@
 <div class="container">
     <div class="col-md-12">
         <div class="company-profile">
-            <img src="{{asset('cover/tumblr-image-sizes-banner.png')}}" style="width: 100%;" alt="">
+            @if(empty(Auth::user()->company->cover_photo))
+                <img src="{{asset('cover/tumblr-image-sizes-banner.png')}}" style="width: 100%;" alt="">
+            @else 
+                <img src="{{ asset('uploads/coverphoto') }}/{{ Auth::user()->company->cover_photo }}" style="width: 100%;" alt="">
+            @endif
             <div class="company-desc">
-            <img src="{{ asset('avatar/man.jpg')}}" style="width: 100" alt="">
-                <h1>Company name</h1>
+            @if(empty(Auth::user()->company->logo))
+                <img src="{{ asset('avatar/man.jpg') }}" width="100" alt="">
+            @else
+                <img src="{{ asset('uploads/logo') }}/{{Auth::user()->company->logo }}" width="100" alt="">
+            @endif                <h1>Company name</h1>
                 <p><strong>Slogan</strong>-{{ $company->slogan }}&nbsp;Adress-{{ $company->address }}&nbsp; Phone-{{ $company->phone }}&nbsp; Website-{{ $company->website }}</p>
             </div>
         </div>
