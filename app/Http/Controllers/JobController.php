@@ -28,6 +28,11 @@ class JobController extends Controller
         return view('jobs.create');
     }
 
+    public function myjob() {
+        $jobs = Job::where('user_id', auth()->user()->id)->get();
+        return view('jobs.myjob', compact('jobs'));
+    }
+
     public function store(JobPostRequest $request)
     {   
         $user_id = auth()->user()->id;
