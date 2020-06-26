@@ -14,8 +14,17 @@ class JobController extends Controller
         $jobs = Job::all()->take(10);
         return view('welcome', compact('jobs'));
     }
+
+
+
     public function show($id, Job $job) {
         return view('jobs.show', compact('job'));
+    }
+
+
+    public function edit($id) {
+        $jobs = Job::findOrFail($id);
+        return view('jobs.edit', compact('jobs'));
     }
 
     public function company()
@@ -27,6 +36,8 @@ class JobController extends Controller
     {
         return view('jobs.create');
     }
+
+
 
     public function myjob() {
         $jobs = Job::where('user_id', auth()->user()->id)->get();

@@ -32,8 +32,10 @@
                                 <td><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;Address: {{$job->address}}</td>
                                 <td> <i class="fa fa-globe" aria-hidden= true></i>&nbsp;Date: {{ $job->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="{{route('jobs.show', [$job->id, $job->slug])}}"><button class="btn btn-success btn-sm">Apply</button></a>
-                                    <button class="btn btn-dark">Edit</button>
+
+                                    <a href="{{ route('jobs.show', [$job->id, $job->slug])}}"><button class="btn btn-success btn-sm">Apply</button></a>
+                                    <a href="{{ route('job.edit', [$job->id])}}"><button class="btn btn-dark">Edit</button></a>
+
                                 </td>
                             </tr>
                             @endforeach
