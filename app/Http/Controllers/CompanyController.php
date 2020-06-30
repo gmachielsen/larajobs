@@ -7,6 +7,10 @@ use App\Company;
 use App\Job;
 class CompanyController extends Controller
 {
+    public function __construct() {
+        $this->middleware('employer', ['except' => array('index')]);
+    }
+
     public function index($id, Company $company)
     {
         $jobs = Job::where('user_id', $id)->get();

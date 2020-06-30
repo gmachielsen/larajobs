@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use App\Job;
 use App\Company;
 use App\Http\Requests\JobPostRequest;
+use Auth;
 
 class JobController extends Controller
 {
+    public function __construct() {
+        $this->middleware('employer', ['except' => array('index', 'show', 'apply', 'allJobs')]);
+    }
     public function index()
     {
-        $jobs = Job::all()->take(10);
-        return view('welcome', compact('jobs'));
+        $jobs = Job::latest()->limit(10)->where('status', 1)->get();
+        $companies = Company::get()->random(12);
+        return view('welcome', compact('jobs', 'companies'));
     }
 
 
@@ -25,6 +30,19 @@ class JobController extends Controller
     public function edit($id) {
         $jobs = Job::findOrFail($id);
         return view('jobs.edit', compact('jobs'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $job = JOb::findOrFail($id);
+        $job->update($request->all());
+        return redirect()->back()->with('message', 'Job successfully updated!');
+    }
+
+    public function applicant() 
+    {
+        $applicants = Job::has('users')->where('user_id', auth()->user()->id)->get();
+        return view('jobs.applicants', compact('applicants'));
     }
 
     public function company()
@@ -64,5 +82,32 @@ class JobController extends Controller
             'last_date' => request('last_date')
         ]);
         return redirect()->back()->with('message', 'Job posted successfully!');
+    }
+
+    public function apply(Request $request, $id) 
+    {
+        $jobId = Job::find($id);
+        $jobId->users()->attach(Auth::user()->id);
+        return redirect()->back()->with('message', 'Application sent!');
+    }
+
+    public function allJobs(Request $request) 
+    {
+        // $keyword = $request->get('title');
+        $keyword = request('title');
+        $type = request('type');
+        $category = request('category_id');
+        $address = request('address');
+        if($keyword||$type||$category||$address) {
+            $jobs = Job::where('title', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('type', $type)
+                    ->orWhere('category_id', $category)
+                    ->orWhere('address', $address)
+                    ->paginate(10);
+                    return view('jobs.alljobs', compact('jobs'));
+        } else {        
+                $jobs = Job::latest()->paginate(10);
+                return view('jobs.alljobs', compact('jobs'));
+        }
     }
 }

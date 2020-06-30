@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">Edit Job</div>
                 <div class="card-body">
-                    <form action="{{ route('job.store')}}" method="POST">
+                    <form action="{{ route('job.update', [$jobs->id])}}" method="POST">
                     @csrf
                         <div class="form-group">
                             <label for="title">Title:</label>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Category:</label>
-                            <select name="category" class="form-control" id="">
+                            <select name="category_id" class="form-control" id="">
                                 @foreach(App\Category::all() as $cat)
                                     <option value="{{ $cat->id }}" {{ $cat->id==$jobs->category_id?'selected':''}}>{{ $cat->name }}</option>
                                 @endforeach

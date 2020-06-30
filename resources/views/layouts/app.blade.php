@@ -10,8 +10,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script defer src="{{ asset('js/app.js') }}"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+  </script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -20,6 +27,8 @@
     <link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.7.2/css/solid.css" integrity="sha384-r/k8YTFqmlOaqRkZuSiE9trsrDXkh07mRaoGBMoDcmA58OHILZPsk29i2BsFng1B" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css" integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </head>
 <body>
     <div id="app">
@@ -55,12 +64,14 @@
                             @endif
 
                         @else
+                            @if(Auth::user()->user_type=='employer')
                             <li>
                                 <a href="{{ route('job.create')}}"><button class="btn btn-secondary">Post a job</button></a>
                             </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if(Auth::user()->user_type='employer')
+                                    @if(Auth::user()->user_type=='employer')
                                         {{ Auth::user()->company->cname }}
                                     @else 
                                         {{ Auth::user()->name }} 
@@ -69,11 +80,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if(Auth::user()->user_type='employer')
+                                    @if(Auth::user()->user_type=='employer')
                                         <a class="dropdown-item" href="{{ route('company.view') }}">
                                             {{ __('Company') }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('my.job') }}">MyJobs</a>
+                                        <a class="dropdown-item" href="{{ route('applicant') }}">Applicants</a>
                                     @else 
                                     <a class="dropdown-item" href="user/profile">
                                         {{ __('Profile') }}
