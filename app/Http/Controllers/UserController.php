@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function __construct() {
-        $this->middleware('seeker');
+        $this->middleware(['seeker', 'verified']);
     }
 
     public function index()
