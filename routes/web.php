@@ -40,7 +40,7 @@ Route::post('company/coverphoto', 'CompanyController@coverPhoto')->name('cover.p
 Route::post('company/logo', 'CompanyController@companyLogo')->name('company.logo');
 
 //user profile
-Route::get('user/profile', 'UserController@index');
+Route::get('user/profile', 'UserController@index')->name('user.profile');
 Route::post('user/profile/create', 'UserController@store')->name('profile.create');
 
 Route::post('user/coverletter', 'UserController@coverletter')->name('cover.letter');
@@ -52,3 +52,10 @@ Route::post('user/avatar', 'UserController@avatar')->name('avatar');
 Route::view('employer/register', 'auth.employer-register')->name('employer.register');
 Route::post('employer/register', 'EmployerRegisterController@employerRegister')->name('emp.register');
 Route::post('/applications/{id}', 'JobController@apply')->name('apply');
+
+// save and unsave job 
+Route::post('/save/{id}', 'FavoriteController@saveJob');
+Route::post('/unsave/{id}', 'FavoriteController@unSaveJob');
+
+// Search
+Route::get('jobs/search', 'JobController@searchJobs');
