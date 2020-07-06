@@ -2051,12 +2051,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      keyword: '',
+      results: []
+    };
   },
   methods: {
-    Searchjobs: function Searchjobs() {}
+    searchJobs: function searchJobs() {
+      var _this = this;
+
+      this.results = [];
+
+      if (this.keyword.length > 1) {
+        axios.get('/jobs/search', {
+          params: {
+            keyword: this.keyword
+          }
+        }).then(function (response) {
+          _this.results = response.data;
+        });
+      }
+    }
   }
 });
 
@@ -37763,11 +37790,11 @@ var render = function() {
         display: "flex",
         margin: "auto"
       },
-      attrs: { type: "text", placeholder: "Search jobs..." },
+      attrs: { type: "text", placeholder: "what are you looking for?" },
       domProps: { value: _vm.keyword },
       on: {
         keyup: function($event) {
-          return _vm.Searchjobs()
+          return _vm.searchJobs()
         },
         input: function($event) {
           if ($event.target.composing) {
@@ -37776,7 +37803,37 @@ var render = function() {
           _vm.keyword = $event.target.value
         }
       }
-    })
+    }),
+    _vm._v(" "),
+    _vm.results.length
+      ? _c("div", { staticClass: "card-footer" }, [
+          _c(
+            "ul",
+            { staticClass: "list-group" },
+            _vm._l(_vm.results, function(result) {
+              return _c("li", { staticClass: "list-group-item" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "/jobs/" + result.id + "/" + result.slug + "/"
+                    }
+                  },
+                  [
+                    _vm._v(" " + _vm._s(result.title) + "\n                "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "badge badge-success" }, [
+                      _vm._v(_vm._s(result.position))
+                    ])
+                  ]
+                )
+              ])
+            }),
+            0
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
