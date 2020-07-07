@@ -63,6 +63,55 @@
                             @endif
                         </div>
                         <div class="form-group">
+                            <label for="number_of_vacancy">Number of vacancy:</label>
+                            <input type="text" name="number_of_vacancy" class="form-control {{ $errors->has('number_of_vacancy') ? ' is-invalid' : '' }}" value="{{ old('number_of_vacancy')}}">
+                            @if ($errors->has('number_of_vacancy'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('number_of_vacancy') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Year of experience:</label>
+                            <input type="text" name="experience" class="form-control {{ $errors->has('experience') ? ' is-invalid' : '' }}" value="{{ old('experience')}}">
+                            @if ($errors->has('experience'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('experience') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select name="gender" class="form-control" id="">
+                                <option value="any">Any</option>
+                                <option value="male">male</option>
+                                <option value="female">female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Salary/year:</label>
+                            <select name="salary" class="form-control" id="">
+                                <option value="negotiable">Negotiable</option>
+                                <option value="15000 min">20.000 min</option>
+                                <option value="20000-30000">20.000-30.000</option>
+                                <option value="30000-40000">30.000-40.000</option>
+                                <option value="40000-50000">40.000-50.000</option>
+                                <option value="50000-70000">50.000-70.000</option>
+                                <option value="70000-100000">70.000-100.000</option>
+                                <option value="100000 plus">100.000 plus</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="level">Level:</label>
+                            <select name="level" class="form-control" id="">
+                                <option value="Any">Any</option>
+                                <option value="Junior">Junior</option>
+                                <option value="Medior">Medior</option>
+                                <option value="Senior">Senior</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="type">Type:</label>
                             <select name="type" class="form-control" id="">
                                 <option value="fulltime">fulltime</option>
@@ -70,6 +119,7 @@
                                 <option value="casual">casual</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="status">Status:</label>
                             <select name="status" class="form-control" id="">

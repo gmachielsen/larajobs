@@ -65,6 +65,58 @@
                             @endif
                         </div>
                         <div class="form-group">
+                            <label for="number_of_vacancy">Number of vacancy:</label>
+                            <input type="text" name="number_of_vacancy" class="form-control {{ $errors->has('number_of_vacancy') ? ' is-invalid' : '' }}" value="{{ $jobs->number_of_vacancy }}">
+                            @if ($errors->has('number_of_vacancy'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('number_of_vacancy') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Year of experience:</label>
+                            <input type="text" name="experience" class="form-control {{ $errors->has('experience') ? ' is-invalid' : '' }}" value="{{ $jobs->experience }}">
+                            @if ($errors->has('experience'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('experience') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select name="gender" class="form-control" id="">
+                                <option value="any"{{$jobs->gender=='any'?'selected':''}}>Any</option>
+                                <option value="male"{{$jobs->gender=='male'?'selected':''}}>Male</option>
+                                <option value="female"{{$jobs->gender=='female'?'selected':''}}>Female</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Salary/year:</label>
+                            <select name="salary" class="form-control" id="">
+                                <option value="negotiable"{{$jobs->salary=='negotiable'?'selected':''}}>Negotiable</option>
+                                <option value="15000 min"{{$jobs->salary=='15000 min'?'selected':''}}>20.000 min</option>
+                                <option value="20000-30000"{{$jobs->salary=='20000-30000'?'selected':''}}>20.000-30.000</option>
+                                <option value="30000-40000"{{$jobs->salary=='30000-40000'?'selected':''}}>30.000-40.000</option>
+                                <option value="40000-50000"{{$jobs->salary=='40000-50000'?'selected':''}}>40.000-50.000</option>
+                                <option value="50000-70000"{{$jobs->salary=='50000-70000'?'selected':''}}>50.000-70.000</option>
+                                <option value="70000-100000"{{$jobs->salary=='70000-100000'?'selected':''}}>70.000-100.000</option>
+                                <option value="100000 plus"{{$jobs->salary=='100000 plus'?'selected':''}}>100.000 plus</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="level">Level:</label>
+                            <select name="level" class="form-control" id="">
+                                <option value="Any"{{$jobs->level=='Any'?'selected':''}}>Any</option>
+                                <option value="Junior"{{$jobs->level=='Junior'?'selected':''}}>Junior</option>
+                                <option value="Medior"{{$jobs->level=='Medior'?'selected':''}}>Medior</option>
+                                <option value="Senior"{{$jobs->level=='Senior'?'selected':''}}>Senior</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
                             <label for="type">Type:</label>
                             <select name="type" class="form-control" id="">
                                 <option value="fulltime"{{$jobs->type=='fulltime'?'selected':''}}>fulltime</option>

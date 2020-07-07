@@ -79,7 +79,12 @@ class JobController extends Controller
             'address' => request('address'),
             'type' => request('type'),
             'status' => request('status'),
-            'last_date' => request('last_date')
+            'last_date' => request('last_date'),
+            'number_of_vacancy' => request('number_of_vacancy'),
+            'gender' => request('gender'),
+            'experience' => request('experience'),
+            'salary' => request('salary'),
+            'level' => request('level'),
         ]);
         return redirect()->back()->with('message', 'Job posted successfully!');
     }

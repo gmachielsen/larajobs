@@ -9,7 +9,7 @@ class Job extends Model
 
     protected $guarded = [];
 
-    // protected $fillable = ['user_id', 'company_id', 'title', 'slug', 'description', 'roles', 'category_id', 'position', 'address', 'type', 'status', 'last_date'];
+    // protected $fillable = ['user_id', 'company_id', 'title', 'slug', 'description', 'roles', 'category_id', 'position', 'address', 'type', 'status', 'last_date', 'number_of_vacancy', 'experience',  'gender', 'salary', 'level'];
 
     public function getRouteKeyName()
     {
