@@ -27,7 +27,7 @@
             <h2 class="mb-5 h3">Recent Jobs</h2>
             <div class="rounded border jobs-wrap">
                   @foreach($jobs as $job)
-              <a href="job-single.html" class="job-item d-block d-md-flex align-items-center  border-bottom fulltime">
+              <a href="{{route('jobs.show', [$job->id, $job->slug])}}" class="job-item d-block d-md-flex align-items-center  border-bottom fulltime">
                 <div class="company-logo blank-logo text-center text-md-left pl-3">
                   <img src="{{asset('uploads/logo')}}/{{ $job->company->logo }}" alt="Image" class="img-fluid mx-auto">
                 </div>
@@ -64,7 +64,7 @@
             </div>
 
             <div class="col-md-12 text-center mt-5">
-              <a href="#" class="btn btn-primary rounded py-3 px-5"><span class="icon-plus-circle"></span> Show More Jobs</a>
+              <a href="{{ route('alljobs')}}" class="btn btn-primary rounded py-3 px-5"><span class="icon-plus-circle"></span> Show More Jobs</a>
             </div>
           </div>
 
