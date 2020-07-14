@@ -8,13 +8,18 @@ use App\Job;
 class CompanyController extends Controller
 {
     public function __construct() {
-        $this->middleware(['employer', 'verified'], ['except' => array('index')]);
+        $this->middleware(['employer', 'verified'], ['except' => array('index', 'company')]);
     }
 
     public function index($id, Company $company)
     {
         $jobs = Job::where('user_id', $id)->get();
         return view('company.index', compact('company'));
+    }
+
+    public function company(){
+        $companies = Company::paginate(10);
+        return view('company.company', compact('companies'));
     }
 
     public function create()

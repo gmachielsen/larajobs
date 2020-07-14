@@ -59,3 +59,15 @@ Route::post('/unsave/{id}', 'FavoriteController@unSaveJob');
 
 // Search
 Route::get('jobs/search', 'JobController@searchJobs');
+
+//category 
+Route::get('/category/{id}', 'CategoryController@index')->name('category.index');
+
+//company
+Route::get('/companies', 'CompanyController@company')->name('company');
+
+//admin
+Route::get('/dashboard', 'DashboardController@index')->middleware('admin');
+//email
+Route::post('/job/email', 'EmailController@send')->name('mail');
+

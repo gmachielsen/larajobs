@@ -7,23 +7,61 @@ use App\Job;
 use App\Company;
 use App\Http\Requests\JobPostRequest;
 use Auth;
+use App\User;
+use App\Category;
 
 class JobController extends Controller
 {
     public function __construct() {
         $this->middleware(['employer', 'verified'], ['except' => array('index', 'show', 'apply', 'allJobs', 'searchJobs')]);
     }
-    public function index()
-    {
-        $jobs = Job::latest()->limit(10)->where('status', 1)->get();
+    
+    public function index(){
+    	$jobs = Job::latest()->limit(10)->where('status',1)->get();
+        $categories = Category::with('jobs')->get();        
         $companies = Company::get()->random(12);
-        return view('welcome', compact('jobs', 'companies'));
+       
+    	return view('welcome',compact('jobs','companies','categories'));
     }
 
+    public function show($id,Job $job){
 
+        $jobRecommendations = $this->jobRecommendations($job);
 
-    public function show($id, Job $job) {
-        return view('jobs.show', compact('job'));
+        return view('jobs.show',compact('job','jobRecommendations'));
+    }
+
+    public function jobRecommendations($job){
+        $data = [];
+        
+        $jobsBasedOnCategories = Job::latest()->where('category_id',$job->category_id)
+                             ->whereDate('last_date','>',date('Y-m-d'))
+                             ->where('id','!=',$job->id)
+                             ->where('status',1)
+                             ->limit(6)
+                             ->get();
+        array_push($data,$jobsBasedOnCategories);
+                           
+        $jobBasedOnCompany = Job::latest()
+                                ->where('company_id',$job->company_id)
+                                ->whereDate('last_date','>',date('Y-m-d'))
+                                ->where('id','!=',$job->id)
+                                ->where('status',1)
+                                ->limit(6)
+                                ->get();
+            array_push($data,$jobBasedOnCompany);
+
+        $jobBasedOnPosition= Job::where('position','LIKE','%'.$job->position.'%')                 ->where('id','!=',$job->id)
+                                ->where('status',1)
+                                ->limit(6);
+            array_push($data,$jobBasedOnPosition);
+
+       $collection  = collect($data);
+       $unique = $collection->unique("id");
+       $jobRecommendations =  $unique->values()->first();
+        // dd($jobRecommendations);
+        // dd($jobsBasedOnCategories);
+        return $jobRecommendations;
     }
 
 
@@ -98,6 +136,19 @@ class JobController extends Controller
 
     public function allJobs(Request $request) 
     {
+        // front search
+        $search = $request->get('search');
+        $address = $request->get('address');
+        if($search && $address) {
+            $jobs = Job::where('position', 'LIKE', '%'.$search.'%')
+                    ->orWhere('title', 'LIKE', '%'.$search.'%')
+                    ->orWhere('type', 'LIKE', '%'.$search.'%')
+                    ->orWhere('address', 'LIKE', '%'.$address.'%')
+                    ->paginate(10);
+                    
+            return view('jobs.alljobs', compact('jobs'));
+
+        }
         // $keyword = $request->get('title');
         $keyword = request('title');
         $type = request('type');
