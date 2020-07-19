@@ -35,4 +35,46 @@ class DashboardController extends Controller
         }
         return redirect('/dashboard')->with('message','Post created successfully');
     }
+
+    public function destroy(Request $request){
+
+        $id = $request->get('id');
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->back()->with('message','Post deleted successfully');
+    }
+
+    public function edit($id){
+        $post = Post::find($id);
+        return view('admin.edit',compact('post'));
+    }
+
+    public function update($id,Request $request){
+    	$this->validate($request,[
+    		'title'=>'required|min:3',
+    		'content'=>'required'
+    	]);
+    	if($request->hasFile('image')){
+   			$file = $request->file('image');
+   			$path = $file->store('uploads','public');
+   			Post::where('id',$id)->update([
+   				'title'=>$title=$request->get('title'),
+   				'content'=>$request->get('content'),
+   				'image'=>$path,
+   				'status'=>$request->get('status')
+   			]);
+   		}
+
+   		$this->updateAllExceptImage($request,$id);
+   		return redirect()->back()->with('message','Post updated successfully');
+
+    }
+
+    public function updateAllExceptImage(Request $request,$id){
+    	return Post::where('id',$id)->update([
+   				'title'=>$title=$request->get('title'),
+   				'content'=>$request->get('content'),
+   				'status'=>$request->get('status')
+   			]);
+    }
 }

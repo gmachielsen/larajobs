@@ -70,6 +70,9 @@ Route::get('/companies', 'CompanyController@company')->name('company');
 Route::get('/dashboard', 'DashboardController@index')->middleware('admin');
 Route::get('/dashboard/create', 'DashboardController@create')->middleware('admin');
 Route::post('/dashboard/create', 'DashboardController@store')->name('post.store')->middleware('admin');
+Route::post('/dashboard/destroy', 'DashboardController@destroy')->name('post.delete')->middleware('admin');
+Route::get('/dashboard/{id}/edit', 'DashboardController@edit')->name('post.edit')->middleware('admin');
+Route::post('/dashboard/{id}/update', 'DashboardController@update')->name('post.update')->middleware('admin');
 //email
-Route::post('/job/email', 'EmailController@send')->name('mail');
+Route::delete('/job/email', 'EmailController@send')->name('mail');
 

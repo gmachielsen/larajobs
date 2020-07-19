@@ -41,7 +41,7 @@
             </td>
               <td>{{$post->created_at->diffForHumans()}}</td>
               <td>
-                  <a href=""><button class="btn btn-primary">Edit</button></a>
+                  <a href="{{ route('post.edit', [$post->id])}}"><button class="btn btn-primary">Edit</button></a>
 
 
                     <!-- Button trigger modal -->
@@ -62,13 +62,13 @@
           <div class="modal-body">
             Do you want to delete?
           </div>
-          <form action="" method="POST">@csrf
+        <form action="{{ route('post.delete') }}" method="POST">@csrf
           <div class="modal-footer">
             <input type="hidden" name="id" value="{{$post->id}}">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-danger">delete</button>
           </div>
-      </form>
+        </form>
         </div>
         </div>
         </div>

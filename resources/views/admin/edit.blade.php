@@ -17,7 +17,7 @@
 				</div>
 				<div class="card-body">
 
-					<form action="{{route('post.update',[$post->id])}}" method="POST" enctype="multipart/form-data">@csrf
+					<form action="{{route('post.update', [$post->id])}}" method="POST" enctype="multipart/form-data">@csrf
 						<div class="form-group">
 							<label>Title</label>
 							<input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"value="{{$post->title}}">
@@ -50,8 +50,8 @@
 						<div class="form-group">
 							<label>Status</label>
 							<select name="status" class="form-control">
-								<option value="0"{{$post->staus=='0'?'selected':''}}>Draft</option>
-								<option value="1"{{$post->staus=='1'?'selected':''}}>Live</option>
+								<option value="0"{{$post->status=='0'?'selected':''}}>Draft</option>
+								<option value="1"{{$post->status=='1'?'selected':''}}>Live</option>
 							</select>
 						</div>
 						<div class="form-group">
