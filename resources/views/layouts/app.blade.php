@@ -73,8 +73,10 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if(Auth::user()->user_type=='employer')
                                         {{ Auth::user()->company->cname }}
-                                    @else 
+                                    @elseif(Auth::user()->user_type=='seeker') 
                                         {{ Auth::user()->name }} 
+                                        @else 
+                                        {{Auth::user()->name }}
                                     @endif
                                     <span class="caret"></span>
                                 </a>
@@ -86,13 +88,14 @@
                                         </a>
                                         <a class="dropdown-item" href="{{ route('my.job') }}">MyJobs</a>
                                         <a class="dropdown-item" href="{{ route('applicant') }}">Applicants</a>
-                                    @else 
+                                    @elseif(Auth::user()->user_type=='seeker') 
                                     <a class="dropdown-item" href="{{ route('user.profile')}}">
                                         {{ __('Profile') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('home')}}">
                                         {{ __('Saved jobs') }}
                                     </a>
+                                    @else
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
