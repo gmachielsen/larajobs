@@ -1,69 +1,21 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
-	@if(Session::has('message'))
-	<div class="alert alert-success">{{Session::get('message')}}</div>
-	@endif
-	<div class="row">
-		<div class="col-md-4">
-			      @include('admin.left-menu')
+<div class="album text-muted">
+	<div class="container">
+		<div class="row" id="app">
+			<div class="title" style="margin-top: 20px;">
+				<h2>{{$post->title}}</h2>
+			</div>
+			<img src="{{asset('storage/'.$post->image)}}" style="width: 100%;" alt="">
+				<div class="col-lg-8">
+					<div class="p-4 mb-8 bg-white">
 
-		</div>
-		<div class="col-md-8">
-			<div class="card">
-				<div class="card-header">
-					Edit post
+						<h3 class="h5 text-black mb-3">Created By: Admin &nbsp; {{date('d-m-Y', strtotime($post->created_at))}}</h3>
+						<p>{{$post->content}}</p>
+					</div>
 				</div>
-				<div class="card-body">
-
-					<form action="{{route('post.update',[$post->id])}}" method="POST" enctype="multipart/form-data">@csrf
-						<div class="form-group">
-							<label>Title</label>
-							<input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"value="{{$post->title}}">
-							  @if ($errors->has('title'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                @endif
-						</div>
-						<div class="form-group">
-							<label>Content</label>
-							<textarea name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}">{{ ($post->content) }}</textarea>
-							 @if ($errors->has('content'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('content') }}</strong>
-                                    </span>
-                                @endif
-						</div>
-						<div class="form-group">
-							<label>Image</label>
-							<input type="file" name="image" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}">
-							<img src="{{asset('storage/'.$post->image)}}" style="width: 100%;"> 
-							
-							 @if ($errors->has('image'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                                @endif
-						</div>
-						<div class="form-group">
-							<label>Status</label>
-							<select name="status" class="form-control">
-								<option value="0"{{$post->staus=='0'?'selected':''}}>Draft</option>
-								<option value="1"{{$post->staus=='1'?'selected':''}}>Live</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-success">Update</button>
-						</div>
-					</form>
-				</div>
-
 		</div>
-
-
-
 	</div>
 
 </div>

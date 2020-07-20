@@ -9,6 +9,7 @@ use App\Http\Requests\JobPostRequest;
 use Auth;
 use App\User;
 use App\Category;
+use App\Post;
 
 class JobController extends Controller
 {
@@ -18,10 +19,11 @@ class JobController extends Controller
     
     public function index(){
     	$jobs = Job::latest()->limit(10)->where('status',1)->get();
-        $categories = Category::with('jobs')->get();        
+        $categories = Category::with('jobs')->get();
+        $posts = Post::where('status', 1)->get();        
         $companies = Company::get()->random(12);
        
-    	return view('welcome',compact('jobs','companies','categories'));
+    	return view('welcome',compact('jobs','companies','categories', 'posts'));
     }
 
     public function show($id,Job $job){
