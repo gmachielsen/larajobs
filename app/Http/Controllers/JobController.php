@@ -10,6 +10,7 @@ use Auth;
 use App\User;
 use App\Category;
 use App\Post;
+use App\Testimonial;
 
 class JobController extends Controller
 {
@@ -20,10 +21,11 @@ class JobController extends Controller
     public function index(){
     	$jobs = Job::latest()->limit(10)->where('status',1)->get();
         $categories = Category::with('jobs')->get();
-        $posts = Post::where('status', 1)->get();        
+        $posts = Post::where('status', 1)->get();
+        $testimonial = Testimonial::orderBy('id', 'DESC')->first();        
         $companies = Company::get()->random(12);
        
-    	return view('welcome',compact('jobs','companies','categories', 'posts'));
+    	return view('welcome',compact('jobs','companies','categories', 'posts', 'testimonial'));
     }
 
     public function show($id,Job $job){

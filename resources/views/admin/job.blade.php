@@ -1,71 +1,56 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="container">
-	@if(Session::has('message'))
-	<div class="alert alert-success">{{Session::get('message')}}</div>
-	@endif
+	<h1>All Jobs</h1><span style="float:right"><a href="/dashboard">Back</a></span>
+	  @if(Session::has('message'))
+
+          <div class="alert alert-success">{{Session::get('message')}}</div>
+          @endif
+
 	<div class="row">
-		<div class="col-md-4">
-			      @include('admin.left-menu')
-
+<div class="col-md-12">
+	<div class="card">
+		<div class="card-header">
+					All jobs
 		</div>
-		<div class="col-md-8">
-			<div class="card">
-				<div class="card-header">
-					Edit post
-				</div>
-				<div class="card-body">
+		<div class="card-body">
 
-					<form action="{{route('post.update',[$post->id])}}" method="POST" enctype="multipart/form-data">@csrf
-						<div class="form-group">
-							<label>Title</label>
-							<input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"value="{{$post->title}}">
-							  @if ($errors->has('title'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                @endif
-						</div>
-						<div class="form-group">
-							<label>Content</label>
-							<textarea name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}">{{ ($post->content) }}</textarea>
-							 @if ($errors->has('content'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('content') }}</strong>
-                                    </span>
-                                @endif
-						</div>
-						<div class="form-group">
-							<label>Image</label>
-							<input type="file" name="image" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}">
-							<img src="{{asset('storage/'.$post->image)}}" style="width: 100%;"> 
-							
-							 @if ($errors->has('image'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                                @endif
-						</div>
-						<div class="form-group">
-							<label>Status</label>
-							<select name="status" class="form-control">
-								<option value="0"{{$post->staus=='0'?'selected':''}}>Draft</option>
-								<option value="1"{{$post->staus=='1'?'selected':''}}>Live</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-success">Update</button>
-						</div>
-					</form>
-				</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Created Date</th>
+      <th scope="col">Position</th>
+        <th>Company</th>
 
+      <th scope="col">Status</th>
+      <th scope="col">View</th>
+    </tr>
+  </thead>
+  <tbody>
+  	  	@foreach($jobs as $job)
+
+    <tr>
+      <th scope="row">{{date('Y-m-d',strtotime($job->created_at))}}</th>
+      <td>{{$job->position}}</td>
+      <td>{{$job->company->cname}}</td>
+      <td> @if($job->status=='0')
+                   <a href="{{route('job.status',[$job->id])}}" class="badge badge-primary"> Draft</a>
+                    @else
+                   <a href="{{route('job.status',[$job->id])}}" class="badge badge-success"> Live</a>
+                @endif</td>
+      <td><a href="{{route('jobs.show',[$job->id,$job->slug])}}" target="_blank">Read</a></td>
+    </tr>
+      @endforeach
+
+  </tbody>
+</table>
+
+{{$jobs->links()}}
 		</div>
-
-
-
 	</div>
+</div>
 
+</div>
 </div>
 
 @endsection

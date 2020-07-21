@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Job;
 
 class DashboardController extends Controller
 {
@@ -98,5 +99,17 @@ class DashboardController extends Controller
     public function show($id){
         $post = Post::find($id);
         return view('admin.read', compact('post'));
+    }
+
+    public function getAllJobs(){
+        $jobs = Job::latest()->paginate();
+        return view('admin.job', compact('jobs'));
+    }
+
+    public function changeJobStatus($id){
+        $job = Job::find($id);
+        $job->status = !$job->status;
+        $job->save();
+        return redirect()->back()->with('message', 'Status updated successfully');
     }
 }

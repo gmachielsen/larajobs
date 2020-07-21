@@ -14,7 +14,11 @@ class CreateTestimonialsTable extends Migration
     public function up()
     {
         Schema::create('testimonials', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('content');
+            $table->string('name');
+            $table->string('profession');
+            $table->integer('video_id');
             $table->timestamps();
         });
     }
