@@ -44,7 +44,7 @@
 
   </tbody>
 </table>
-
+<br>
 {{$jobs->links()}}
 		</div>
 	</div>
