@@ -30,5 +30,10 @@ Route::prefix('dashboard')->name('admin.')->middleware('admin')->group(function(
     Route::get('/news/{id}/edit', 'NewsController@edit')->name('news.edit');
     Route::post('/news/{id}/update', 'NewsController@update')->name('news.update');
     Route::post('/news/{id}/delete', 'NewsController@delete')->name('news.delete');
+
+    Route::get('/employers', 'CompanyController@index')->name('company.index');
+    Route::get('/employers/{id}/edit', 'CompanyController@edit')->name('company.edit');
+    Route::post('/employers/{id}/update', 'CompanyController@update')->name('company.update');
+    Route::post('/employers/{id}/delete', 'CompanyController@delete')->name('company.delete');
 });
 

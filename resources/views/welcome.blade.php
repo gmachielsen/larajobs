@@ -29,8 +29,11 @@
                   @foreach($jobs as $job)
               <a href="{{route('jobs.show', [$job->id, $job->slug])}}" class="job-item d-block d-md-flex align-items-center  border-bottom fulltime">
                 <div class="company-logo blank-logo text-center text-md-left pl-3">
-                  <img src="{{asset('uploads/logo')}}/{{ $job->company->logo }}" alt="Image" class="img-fluid mx-auto">
-                </div>
+                    @if(!empty($job->company->logo))
+                      <img src="{{asset('avatar/man.jpg')}}" alt="Image" class="img-fluid mx-auto">
+                    @else
+                    <img src="{{asset('uploads/logo')}}/{{$job->company->logo}}" alt="Image" class="img-fluid mx-auto">
+                    @endif                </div>
                 <div class="job-details h-100">
                   <div class="p-3 align-self-center">
                     <h3>{{ $job->position }}</h3>

@@ -20,6 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('slug');
             $table->string('address');
             $table->string('phone');
+            $table->string('email');
             $table->string('website');
             $table->string('logo');
             $table->string('cover_photo');

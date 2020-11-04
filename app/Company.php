@@ -17,4 +17,16 @@ class Company extends Model
     {
         return 'slug';
     }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function scopeWhenSearch($query, $search)
+    {
+        return $query->when($search, function ($q) use ($search) {
+            return $q->where('cname', 'like', "%$search%");
+        });
+    }
 }

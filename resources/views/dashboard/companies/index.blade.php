@@ -3,12 +3,12 @@
 @section('content')
 
     <div>
-        <h2>News</h2>
+        <h2>Employers</h2>
     </div>
 
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item active">News</li>
+        <li class="breadcrumb-item active">Companies</li>
         {{--<li class="breadcrumb-item active">Data</li>--}}
     </ul>
 
@@ -34,7 +34,7 @@
                                 <div class="col-md-4">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
                                     
-                                        <a href="{{ route('admin.news.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a>
+                                        <!-- <a href="{{ route('admin.blogs.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a> -->
 
                                 </div>
                             </div><!-- end of row -->
@@ -44,32 +44,36 @@
                     </div><!-- end of col 12 -->
 
                 </div><!-- end of row -->
-
+        
                 <div class="row">
                     <div class="col-md-12">
-                        @if ($newsitems->count() > 0)
+                        @if ($companies->count() > 0)
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Image</th>
-                                    <th>Title</th>
-                                    <th>Content</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
                                     <th>Action</th>
+
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                @foreach ($newsitems as $index=>$news)
+                                @foreach ($companies as $index=>$company)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
-                                        <td><img src="{{ asset('uploads/newsImages') }}/{{ $news->image }}" width="100px" style="width: 100px" alt=""></td>
+                                        <td><img src="{{ asset('uploads/blogImages') }}/{{ $company->image }}" width="100px" style="width: 100px" alt=""></td>
 
-                                        <td>{{ $news->title }}</td>
-                                        <td>{!! $news->content !!}</td>
+                                        <td>{{ $company->cname }}</td>
+                                        <td>{{ $company->phone }}</td>
+                                        <td>{{ $company->email }}</td>
+
 
                                         <td>
-                                                <a href="{{ route('admin.news.edit', [$news->id])}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="{{ route('admin.company.edit', [$company->id])}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
                                                 
                                                 <button type="submit" class="btn btn-danger btn-sm delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash"></i> Delete</button>
                                         </td>
@@ -79,17 +83,17 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Delete {{ $news->title }}</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Delete {{ $company->cname }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>You are going to delete {{ $news->title }}. Are you sure?</p>
+        <p>You are going to delete {{ $company->cname }}. Are you sure?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form method="POST" action="{{ route('admin.news.delete', [ $news->id])}}">
+        <form method="POST" action="{{ route('admin.company.delete', [ $company->id])}}">
             @csrf
             <button type="submit" class="btn btn-danger">Delete</button>
         </form>
@@ -101,7 +105,7 @@
 
                                 </tbody>
                             </table>
-                            {{ $newsitems->appends(request()->query())->links() }}
+                            {{ $companies->appends(request()->query())->links() }}
                         @else
                             <h3 style="font-weight: 400;">Sorry no records found</h3>
                         @endif
