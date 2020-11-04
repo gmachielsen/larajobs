@@ -20,12 +20,19 @@ class DatabaseSeeder extends Seeder
         factory('App\Job', 20)->create();
 
         $categories = [
-            'Technology',
-            'Engineering',
-            'Government',
-            'Medical',
-            'Construction',
-            'Software'
+            'C++',
+            'C#',
+            'Cybersecurity',
+            'Frontend',
+            'Infra',
+            'Java',
+            '.Net',
+            'Magento',
+            'Node',
+            'Oracle',
+            'PHP',
+            'SAP',
+            'Wordpress',
         ];
         foreach($categories as $category) {
             Category::create(['name'=>$category]);
@@ -34,10 +41,10 @@ class DatabaseSeeder extends Seeder
         Role::truncate();
         $adminRole = Role::create(['name'=>'admin']);
         $admin = User::create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('password123'),
-            'email_verified_at' => NOW()
+            'name'=>'admin',
+            'email'=>'g.machielsen@gmail.com',
+            'password'=>bcrypt('Bartje83!'),
+            'email_verified_at'=>NOW()
         ]);
 
         $admin->roles()->attach($adminRole);

@@ -3,7 +3,7 @@
    <div class="album text-muted">
      <div class="container">
        <div class="row">
-         <h1>Employer Registration</h1>   
+         <h1>Werkgevers registratie</h1>   
          
 
     
@@ -25,10 +25,10 @@
                         <input type="hidden" value="employer" name="user_type">
                         <div class="form-group row">
                     
-                            <div class="col-md-12">Company name</div>
+                            <div class="col-md-12">Bedrijfsnaam</div>
 
                             <div class="col-md-12">
-                                <input id="name" type="text" placeholder="Company name" class="form-control{{ $errors->has('cname') ? ' is-invalid' : '' }}" name="cname" value="{{ old('cname') }}" required autofocus>
+                                <input id="name" type="text" placeholder="bedrijfsnaam" class="form-control{{ $errors->has('cname') ? ' is-invalid' : '' }}" name="cname" value="{{ old('cname') }}" required autofocus>
 
                                 @if ($errors->has('cname'))
                                     <span class="invalid-feedback" role="alert">
@@ -41,10 +41,10 @@
 
                         <div class="form-group row">
                     
-                            <div class="col-md-12">Email</div>
+                            <div class="col-md-12">E-mail</div>
 
                             <div class="col-md-12">
-                                <input id="email" type="text" placeholder="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="text" placeholder="e-mail" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -57,10 +57,10 @@
 
                         <div class="form-group row">
                     
-                            <div class="col-md-12">Password</div>
+                            <div class="col-md-12">Wachtwoord</div>
 
                             <div class="col-md-12">
-                                <input id="password" type="password" placeholder="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required autofocus>
+                                <input id="password" type="password" placeholder="wachtwoord" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required autofocus>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -70,10 +70,10 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-12">Confirm password</div>
+                            <div class="col-md-12">Bevestig wachtwoord</div>
 
                             <div class="col-md-12">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" placeholder="bevestig wachtwoord" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Register as Employer" class="btn btn-primary  py-2 px-5">
+                  <input type="submit" value="Registreer als werkgever" class="btn btn-primary  py-2 px-5">
                 </div>
               </div>
 
@@ -94,9 +94,9 @@
             
             
             <div class="p-4 mb-3 bg-white">
-              <h3 class="h5 text-black mb-3">More Info</h3>
-              <p>Once you create an account a verification link will be sent to your email.</p>
-              <p><a href="#" class="btn btn-primary  py-2 px-4">Learn More</a></p>
+              <h3 class="h5 text-black mb-3">Meer informatie</h3>
+              <p>Zodra je bij ons registreert ontvangt u een link in uw mailbox om uw account te verifiëren.</p>
+              <p><a href="#" class="btn btn-primary  py-2 px-4">Meer weten?</a></p>
             </div>
           </div>
         </div>

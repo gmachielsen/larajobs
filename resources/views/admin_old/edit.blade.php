@@ -20,7 +20,7 @@
 					<form action="{{route('post.update', [$post->id])}}" method="POST" enctype="multipart/form-data">@csrf
 						<div class="form-group">
 							<label>Title</label>
-							<input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"value="{{$post->title}}">
+							<input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" value="{{$post->title}}">
 							  @if ($errors->has('title'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('title') }}</strong>

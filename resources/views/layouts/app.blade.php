@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @trixassets
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -55,18 +56,18 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('employer.register') }}">{{ __('Employer Register') }}</a>
+                                <a class="nav-link" href="{{ route('employer.register') }}">{{ __('Werkgever') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Job Seeker Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Werkzoekende') }}</a>
                                 </li>
                             @endif
 
                         @else
                             @if(Auth::user()->user_type=='employer')
                             <li>
-                                <a href="{{ route('job.create')}}"><button class="btn btn-secondary">Post a job</button></a>
+                                <a href="{{ route('job.create')}}"><button class="btn btn-secondary">Plaats een vacature</button></a>
                             </li>
                             @endif
                             <li class="nav-item dropdown">
@@ -86,14 +87,14 @@
                                         <a class="dropdown-item" href="{{ route('company.view') }}">
                                             {{ __('Company') }}
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('my.job') }}">MyJobs</a>
-                                        <a class="dropdown-item" href="{{ route('applicant') }}">Applicants</a>
+                                        <a class="dropdown-item" href="{{ route('my.job') }}">Mijn vacatures</a>
+                                        <a class="dropdown-item" href="{{ route('applicant') }}">Sollicitanten</a>
                                     @elseif(Auth::user()->user_type=='seeker') 
                                     <a class="dropdown-item" href="{{ route('user.profile')}}">
-                                        {{ __('Profile') }}
+                                        {{ __('Profiel') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('home')}}">
-                                        {{ __('Saved jobs') }}
+                                        {{ __('Favoriete vacatures') }}
                                     </a>
                                     @else
                                     @endif

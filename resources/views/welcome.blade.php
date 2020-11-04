@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Job Finder &mdash; Colorlib Website Template</title>
+    <title>IT zoeker &mdash; Colorlib Website Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -24,7 +24,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="100">
-            <h2 class="mb-5 h3">Recent Jobs</h2>
+            <h2 class="mb-5 h3">Recente vacatures</h2>
             <div class="rounded border jobs-wrap">
                   @foreach($jobs as $job)
               <a href="{{route('jobs.show', [$job->id, $job->slug])}}" class="job-item d-block d-md-flex align-items-center  border-bottom fulltime">
@@ -64,7 +64,7 @@
             </div>
 
             <div class="col-md-12 text-center mt-5">
-              <a href="{{ route('alljobs')}}" class="btn btn-primary rounded py-3 px-5"><span class="icon-plus-circle"></span> Show More Jobs</a>
+              <a href="{{ route('alljobs')}}" class="btn btn-primary rounded py-3 px-5"><span class="icon-plus-circle"></span> Zoek op nog meer vacatures</a>
             </div>
           </div>
 
@@ -79,9 +79,9 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-6 text-center" data-aos="fade">
-            <h1 class="h3 mb-0">Your Dream Job</h1>
-            <p class="h3 text-white mb-5">Is Waiting For You</p>
-            <p><a href="/register" class="btn btn-outline-success py-3 px-4">Job seeker</a> <a href="{{ route('employer.register')}}" class="btn btn-outline-warning py-3 px-4">Employer</a></p>
+            <h1 class="h3 mb-0">IT-droombaan?</h1>
+            <p class="h3 text-white mb-5">Deze wacht op jou!</p>
+            <p><a href="/register" class="btn btn-outline-success py-3 px-4">Vind jouw baan</a> <a href="{{ route('employer.register')}}" class="btn btn-outline-warning py-3 px-4">Wergever</a></p>
             
           </div>
         </div>
@@ -94,34 +94,36 @@
       <div class="container">
         
         <div class="text-center mb-5 section-heading">
-          <h2>Why Choose Us</h2>
+          <h2>Waarom voor ons kiezen?</h2>
         </div>
 
         <div class="d-block d-md-flex border-bottom">
           <div class="text-center p-4 item border-right" data-aos="fade">
-            <span class="flaticon-worker display-3 mb-3 d-block text-primary"></span>
-            <h2 class="h4">More Jobs Every Day</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati reprehenderit explicabo quos fugit vitae dolorum.</p>
+            <span class="flaticon-calculator display-3 mb-3 d-block text-primary"></span>
+
+            <h2 class="h4">Gratis voor werkgevers en werknemers</h2>
+            <p>Ben jij als werkgever die dure recruitmentbureaus ook zat? Wij gaan voor het belang van de werkgever en de werknemer! </p>
             <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
           </div>
           <div class="text-center p-4 item" data-aos="fade">
-            <span class="flaticon-wrench display-3 mb-3 d-block text-primary"></span>
-            <h2 class="h4">Creative Jobs</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati reprehenderit explicabo quos fugit vitae dolorum.</p>
+            <span class="flaticon-worker display-3 mb-3 d-block text-primary"></span>
+
+            <h2 class="h4">Geen website voor recruitmentbureaus, maar enkel voor werkgevers en werkzoekenden.</h2>
+            <p>Wij geloven dat het juist de bedrijven de expertise hebben om de geschikte mensen aan te nemen</p>
             <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
           </div>
         </div>
         <div class="d-block d-md-flex">
           <div class="text-center p-4 item border-right" data-aos="fade">
-            <span class="flaticon-stethoscope display-3 mb-3 d-block text-primary"></span>
-            <h2 class="h4">Healthcare</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati reprehenderit explicabo quos fugit vitae dolorum.</p>
+          <span class="flaticon-wrench display-3 mb-3 d-block text-primary"></span>
+            <h2 class="h4">Scheppen van ruime keuze</h2>
+            <p>Wij willen het platform zijn waar IT'ers een baan kunnen vinden. Dat houdt in dat wij vacatures willen aanbieden van front end tot en met de backend en de cybersecurity</p>
             <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
           </div>
           <div class="text-center p-4 item" data-aos="fade">
-            <span class="flaticon-calculator display-3 mb-3 d-block text-primary"></span>
-            <h2 class="h4">Finance &amp; Accounting</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati reprehenderit explicabo quos fugit vitae dolorum.</p>
+            <span class="flaticon-stethoscope display-3 mb-3 d-block text-primary"></span>
+            <h2 class="h4">Wij blijven ontwikkelen</h2>
+            <p>Wij zijn een website gerund voor en door programmeurs! Omdat wij plezier hebben om met deze website een bijdrage te kunnen leveren aan de maatschappij.</p>
             <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
           </div>
         </div>
