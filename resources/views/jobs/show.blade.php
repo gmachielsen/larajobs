@@ -33,33 +33,32 @@
             </div>
             <div class="p-4 mb-8 bg-white">
               <!-- icon-book mr-3-->
-              <h3 class="h5 text-black mb-3"><i class="fa fa-book" style="color: blue;">&nbsp;</i>Description <a href="#"data-toggle="modal" data-target="#exampleModal1"><i class="fa fa-envelope-square" style="font-size: 34px;float:right;color:green;"></i></a></h3>
+              <h3 class="h5 text-black mb-3"><i class="fa fa-book" style="color: blue;">&nbsp;</i>Beschrijving <a href="#"data-toggle="modal" data-target="#exampleModal1"><i class="fa fa-envelope-square" style="font-size: 34px;float:right;color:green;"></i></a></h3>
               <p> {{$job->description}}.</p>
               
             </div>
             <div class="p-4 mb-8 bg-white">
               <!--icon-align-left mr-3-->
-              <h3 class="h5 text-black mb-3"><i class="fa fa-user" style="color: blue;">&nbsp;</i>Roles and Responsibilities</h3>
+              <h3 class="h5 text-black mb-3"><i class="fa fa-user" style="color: blue;">&nbsp;</i>Taken en verantwoordelijkheden</h3>
               <p>{{$job->roles}} .</p>
-              
             </div>
             <div class="p-4 mb-8 bg-white">
-              <h3 class="h5 text-black mb-3"><i class="fa fa-users" style="color: blue;">&nbsp;</i>Number of vacancy</h3>
+              <h3 class="h5 text-black mb-3"><i class="fa fa-users" style="color: blue;">&nbsp;</i>Vacature nummber</h3>
               <p>{{$job->number_of_vacancy }} .</p>
               
             </div>
             <div class="p-4 mb-8 bg-white">
-              <h3 class="h5 text-black mb-3"><i class="fa fa-clock-o" style="color: blue;">&nbsp;</i>Experience</h3>
+              <h3 class="h5 text-black mb-3"><i class="fa fa-clock-o" style="color: blue;">&nbsp;</i>Vereiste ervaring</h3>
               <p>{{$job->experience}}&nbsp;years</p>
               
             </div>
-            <div class="p-4 mb-8 bg-white">
-              <h3 class="h5 text-black mb-3"><i class="fa fa-venus-mars" style="color: blue;">&nbsp;</i>Gender</h3>
+            <!-- <div class="p-4 mb-8 bg-white">
+              <h3 class="h5 text-black mb-3"><i class="fa fa-venus-mars" style="color: blue;">&nbsp;</i>Geslacht</h3>
               <p>{{$job->gender}} </p>
               
-            </div>
+            </div> -->
             <div class="p-4 mb-8 bg-white">
-              <h3 class="h5 text-black mb-3"><i class="fa fa-dollar" style="color: blue;">&nbsp;</i>Salary</h3>
+              <h3 class="h5 text-black mb-3"><i class="fa fa-dollar" style="color: blue;">&nbsp;</i>Salaris</h3>
               <p>{{$job->salary}}</p>
             </div>
 
@@ -67,17 +66,17 @@
 
           
             <div class="col-md-4 p-4 site-section bg-light">
-              <h3 class="h5 text-black mb-3 text-center">Short Info</h3>
-                  <p>Company name: {{$job->company->cname}}</p>
-                <p>Address: {{$job->address}}</p>
-                    <p>Employment Type: {{$job->type}}</p>
-                    <p>Position: {{$job->position}}</p>
-                    <p>Posted: {{$job->created_at->diffForHumans()}}</p>
-                    <p>Last date to apply: {{ date('F d, Y', strtotime($job->last_date)) }}</p>
+              <h3 class="h5 text-black mb-3 text-center">Korte beschrijving</h3>
+                  <p>Bedrijfsnaam: {{$job->company->cname}}</p>
+                <p>Adres: {{$job->address}}</p>
+                    <p>Type: {{$job->type}}</p>
+                    <p>Positie: {{$job->position}}</p>
+                    <p>Geplaatst: {{$job->created_at->diffForHumans()}}</p>
+                    <p>Uiterlijke datum om te solliciteren: {{ date('F d, Y', strtotime($job->last_date)) }}</p>
 
 
 
-              <p><a href="{{route('company.index',[$job->company->id,$job->company->slug])}}" class="btn btn-warning" style="width: 100%;">Visit Company Page</a></p>
+              <p><a href="{{route('company.index',[$job->company->id,$job->company->slug])}}" class="btn btn-warning" style="width: 100%;">Bezoek bedrijfspagina</a></p>
               <p>
                 @if(Auth::check()&&Auth::user()->user_type='seeker')
                 @if(!$job->checkApplication())
@@ -97,7 +96,7 @@
     <p class="badge badge-success">{{$jobRecommendation->type}}</p>
     <h5 class="card-title">{{$jobRecommendation->position}}</h5>
     <p class="card-text">{{str_limit($jobRecommendation->description,90)}}
-   <center> <a href="{{route('jobs.show',[$jobRecommendation->id,$jobRecommendation->slug])}}" class="btn btn-success">Apply</a></center>
+   <center> <a href="{{route('jobs.show',[$jobRecommendation->id,$jobRecommendation->slug])}}" class="btn btn-success">Solliciteer</a></center>
   </div>
 </div>
 @endforeach
@@ -107,7 +106,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Send job to your friend</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Stuur deze vacature naar kennis of vriend</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -117,25 +116,25 @@
           <input type="hidden" name="job_id" value="{{$job->id}}">
           <input type="hidden" name="job_slug" value="{{$job->slug}}">
           <div class="form-group">
-            <label>Your name *</label>
+            <label>Uw naam *</label>
             <input type="text" name="your_name" class="form-control" required="">
           </div>
           <div class="form-group">
-            <label>Your mail *</label>
+            <label>Uw e-mail *</label>
             <input type="email" name="your_email" class="form-control" required="">
           </div>
           <div class="form-group">
-            <label>Person name *</label>
+            <label>Naam *</label>
             <input type="text" name="friend_name" class="form-control" required="">
           </div>
           <div class="form-group">
-            <label>Person email *</label>
+            <label>Email *</label>
             <input type="email" name="friend_email" class="form-control" required="">
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Mail this job</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
+          <button type="submit" class="btn btn-primary">Mail deze vacature</button>
         </div>
       </form>
     </div>

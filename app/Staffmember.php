@@ -5,9 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
 
-class Profile extends Model
+class Staffmember extends Model
 {
-    // protected $fillable = ['user_id', 'gender' etcetera];
     use HasTrixRichText;
     protected $guarded = [];
 

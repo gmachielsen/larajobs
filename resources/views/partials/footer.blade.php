@@ -6,19 +6,19 @@
           <div class="col-md-4">
             <h3 class="footer-heading mb-4 text-white">Over ons</h3>
             <p>Wij willen de meest kostenbesparende IT-recruitmentwebsite zijn van heel Nederland. Bij ons zijn recruitmentbureaus niet welkom en solliciteer je rechtstreeks met het bedrijf zelf.</p>
-            <p><a href="#" class="btn btn-primary pill text-white px-4">Meer weten?</a></p>
+            <p><a href="{{ route('about.us')}}" class="btn btn-primary pill text-white px-4">Meer weten?</a></p>
           </div>
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-6">
                 <h3 class="footer-heading mb-4 text-white">Menu</h3>
                   <ul class="list-unstyled">
-                    <li><a href="#">Over ons</a></li>
-                    <li><a href="#">Diensten</a></li>
-                    <li><a href="#">Aanpak</a></li>
-                    <li><a href="#">Nieuws</a></li>
-                    <li><a href="#">Vacatures</a></li>
-                    <li><a href="#">Werknemers met autisme</a></li>
+                    <li><a href="{{ route('about.us')}}">Over ons</a></li>
+                    <li><a href="{{ route('services')}}">Diensten</a></li>
+                    <li><a href="{{ route('approach')}}">Aanpak</a></li>
+                    <li><a href="{{ route('news')}}">Nieuws</a></li>
+                    <li><a href="{{ route('vacancies')}}">Vacatures</a></li>
+                    <li><a href="{{ route('neurodiversity')}}">Werknemers met autisme</a></li>
                   </ul>
               </div>
               <div class="col-md-6">

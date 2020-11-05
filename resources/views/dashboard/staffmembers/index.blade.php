@@ -3,12 +3,12 @@
 @section('content')
 
     <div>
-        <h2>Employers</h2>
+        <h2>Staffmembers</h2>
     </div>
 
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item active">Companies</li>
+        <li class="breadcrumb-item active">Staffmembers</li>
         {{--<li class="breadcrumb-item active">Data</li>--}}
     </ul>
 
@@ -34,7 +34,7 @@
                                 <div class="col-md-4">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
                                     
-                                        <!-- <a href="{{ route('admin.blogs.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a> -->
+                                        <a href="{{ route('admin.staffmembers.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a>
 
                                 </div>
                             </div><!-- end of row -->
@@ -47,40 +47,28 @@
         
                 <div class="row">
                     <div class="col-md-12">
-                        @if ($companies->count() > 0)
+                        @if ($staffmembers->count() > 0)
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
-
+                                    <th>name</th>
+                                    <th>description</th>
+                                    <th>action</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                @foreach ($companies as $index=>$company)
+                                @foreach ($staffmembers as $index=>$staffmember)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
-                                        @if(!empty($company->logo))
+                                        <td><img src="{{ asset('uploads/staffmemberImages') }}/{{ $staffmember->image }}" width="100px" style="width: 100px" alt=""></td>
 
-                                            <td><img width="50" src="{{asset('avatar/man.jpg')}}"></td>
-
-                                        @else
-
-                                            <td><img width="50" src="{{asset('uploads/logo')}}/{{$company->logo}}"></td>
-
-                                        @endif
-                                        <td>{{ $company->cname }}</td>
-                                        <td>{{ $company->phone }}</td>
-                                        <td>{{ $company->email }}</td>
-
-
+                                        <td>{{ $staffmember->name }}</td>
+                                        <td>{!! $staffmember->description !!}</td>
                                         <td>
-                                                <a href="{{ route('admin.company.edit', [$company->id])}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="{{ route('admin.staffmembers.edit', [$staffmember->id])}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
                                                 
                                                 <button type="submit" class="btn btn-danger btn-sm delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash"></i> Delete</button>
                                         </td>
@@ -90,17 +78,17 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Delete {{ $company->cname }}</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Delete {{ $staffmember->title }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>You are going to delete {{ $company->cname }}. Are you sure?</p>
+        <p>You are going to delete {{ $staffmember->name }}. Are you sure?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form method="POST" action="{{ route('admin.company.delete', [ $company->id])}}">
+        <form method="POST" action="{{ route('admin.staffmembers.delete', [ $staffmember->id])}}">
             @csrf
             <button type="submit" class="btn btn-danger">Delete</button>
         </form>
@@ -112,7 +100,7 @@
 
                                 </tbody>
                             </table>
-                            {{ $companies->appends(request()->query())->links() }}
+                            {{ $staffmembers->appends(request()->query())->links() }}
                         @else
                             <h3 style="font-weight: 400;">Sorry no records found</h3>
                         @endif

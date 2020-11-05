@@ -35,5 +35,14 @@ Route::prefix('dashboard')->name('admin.')->middleware('admin')->group(function(
     Route::get('/employers/{id}/edit', 'CompanyController@edit')->name('company.edit');
     Route::post('/employers/{id}/update', 'CompanyController@update')->name('company.update');
     Route::post('/employers/{id}/delete', 'CompanyController@delete')->name('company.delete');
+
+    Route::get('/staffmembers', 'StaffController@index')->name('staffmembers.index');
+    Route::get('/staffmembers/create', 'StaffController@create')->name('staffmembers.create');
+    Route::post('/staffmembers/store', 'StaffController@store')->name('staffmembers.store');
+    Route::get('/staffmembers/{id}/edit', 'StaffController@edit')->name('staffmembers.edit');
+    Route::post('/staffmembers/{id}/update', 'StaffController@update')->name('staffmembers.update');
+    Route::post('/staffmembers/{id}/delete', 'StaffController@delete')->name('staffmembers.delete');
+
+    Route::get('/profiles', 'ProfileController@index')->name('profiles.index');
 });
 
