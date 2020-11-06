@@ -66,13 +66,9 @@
                                     <tr>
                                         <td>{{ $index+1 }}</td>
                                         @if(!empty($company->logo))
-
-                                            <td><img width="50" src="{{asset('avatar/man.jpg')}}"></td>
-
+                                        <td><img width="50" src="{{asset('uploads/logo')}}/{{$company->logo}}"></td>
                                         @else
-
-                                            <td><img width="50" src="{{asset('uploads/logo')}}/{{$company->logo}}"></td>
-
+                                        <td><img width="50" src="{{asset('avatar/man.jpg')}}"></td>
                                         @endif
                                         <td>{{ $company->cname }}</td>
                                         <td>{{ $company->phone }}</td>
@@ -80,9 +76,9 @@
 
 
                                         <td>
-                                                <a href="{{ route('admin.company.edit', [$company->id])}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="{{ route('admin.company.edit', [$company->id])}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> View</a>
                                                 
-                                                <button type="submit" class="btn btn-danger btn-sm delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash"></i> Delete</button>
+                                                <!-- <button type="submit" class="btn btn-danger btn-sm delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash"></i> Delete</button> -->
                                         </td>
                                     </tr>
 <!-- Modal -->

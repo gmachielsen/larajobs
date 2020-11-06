@@ -58,6 +58,7 @@
                                 </thead>
 
                                 <tbody>
+                                
                                 @foreach ($users as $index=>$user)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
