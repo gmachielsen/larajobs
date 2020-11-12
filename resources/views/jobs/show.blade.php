@@ -111,7 +111,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('mail')}}" method="POST">@csrf
+      <form action="{{route('mail')}}" method="POST">
+      @csrf
         <div class="modal-body">
           <input type="hidden" name="job_id" value="{{$job->id}}">
           <input type="hidden" name="job_slug" value="{{$job->slug}}">

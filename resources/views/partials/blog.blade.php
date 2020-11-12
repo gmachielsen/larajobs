@@ -9,16 +9,16 @@
 
         <div class="nonloop-block-15 owl-carousel">
           
-            @foreach($posts as $post)
+            @foreach($blogs as $blog)
             <div class="media-with-text">
               <div class="img-border-sm mb-4">
-                <a href="{{route('post.show', [$post->id, $post->slug])}}" class="image-play">
-                  <img src="{{asset('storage/'.$post->image)}}" alt="" class="img-fluid">
+                <a href="{{route('blog', [$blog->id, $blog->slug])}}" class="image-play">
+                  <img src="{{ asset('uploads/blogImages') }}/{{ $blog->image }}" alt="" class="img-fluid">
                 </a>
               </div>
-              <h2 class="heading mb-0 h5"><a href="{{route('post.show', [$post->id, $post->slug])}}">{{$post->title}}</a></h2>
-              <span class="mb-3 d-block post-date">{{$post->created_at->diffForHumans()}} &bullet; By <a href="{{route('post.show', [$post->id, $post->slug])}}">Admin</a></span>
-              <p>{{str_limit($post->content, 50)}}</p>
+              <h2 class="heading mb-0 h5"><a href="{{route('post.show', [$blog->id, $blog->slug])}}">{{$blog->title}}</a></h2>
+              <span class="mb-3 d-block post-date">{{$blog->created_at->diffForHumans()}} &bullet; By <a href="{{route('post.show', [$blog->id, $blog->slug])}}">Admin</a></span>
+              <p>{!! str_limit($blog->content, 50) !!}</p>
             </div>
             
             @endforeach

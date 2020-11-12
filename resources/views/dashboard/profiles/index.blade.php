@@ -68,9 +68,9 @@
 
 
                                         <td>
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="{{ route('admin.profile.edit', [$user->id])}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
                                                 
-                                                <button type="submit" class="btn btn-danger btn-sm delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash"></i> Delete</button>
+                                                <!-- <button type="submit" class="btn btn-danger btn-sm delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash"></i> Delete</button> -->
                                         </td>
                                     </tr>
 <!-- Modal -->

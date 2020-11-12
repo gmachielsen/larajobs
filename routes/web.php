@@ -30,7 +30,8 @@ Route::post('/vacatures/{id}/edit', 'JobController@update')->name('job.update');
 Route::get('/vacatures/my-job', 'JobController@myjob')->name('my.job');
 Route::get('/vacatures/{id}/{job}', 'JobController@show')->name('jobs.show');
 Route::get('/vacatures/applications', 'JobController@applicant')->name('applicant');
-Route::get('/vacatures/alljobs', 'JobController@allJobs')->name('alljobs');
+Route::get('/vacatures/alle_vacatures', 'JobController@allJobs')->name('alljobs');
+Route::get('/vacatures/alle-vacatures', 'JobController@filterJobs')->name('filter.jobs');
 
 // company
 Route::get('/werkgever/{id}/{company}', 'CompanyController@index')->name('company.index');
@@ -86,13 +87,13 @@ Route::get('testimonial/create', 'TestimonialController@create')->middleware('ad
 Route::post('testimonial/create', 'TestimonialController@store')->name('testimonial.store')->middleware('admin');
 
 //email
-Route::delete('/job/email', 'EmailController@send')->name('mail');
+Route::post('/job/email', 'EmailController@send')->name('mail');
 
 // frontend
 Route::get('over_ons', 'FrontendController@aboutus')->name('about.us');
 Route::get('nieuws', 'FrontendController@news')->name('news');
 Route::get('interne-vacatures', 'FrontendController@vacancies')->name('vacancies');
-Route::get('blog', 'FrontendController@blog')->name('blog');
+Route::get('blog/{id}', 'FrontendController@blog')->name('blog');
 Route::get('diensten', 'FrontendController@services')->name('services');
 Route::get('aanpak', 'FrontendController@approach')->name('approach');
 Route::get('neurodiversiteit', 'FrontendController@specialpeople')->name('neurodiversity');

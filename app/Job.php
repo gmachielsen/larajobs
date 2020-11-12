@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
 
 class Job extends Model
 {
-
+    use HasTrixRichText;
     protected $guarded = [];
 
     // protected $fillable = ['user_id', 'company_id', 'title', 'slug', 'description', 'roles', 'category_id', 'position', 'address', 'type', 'status', 'last_date', 'number_of_vacancy', 'experience',  'gender', 'salary', 'level'];

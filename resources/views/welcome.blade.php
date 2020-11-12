@@ -106,14 +106,14 @@
 
             <h2 class="h4">Gratis voor werkgevers en werknemers</h2>
             <p>Ben jij als werkgever die dure recruitmentbureaus ook zat? Wij gaan voor het belang van de werkgever en de werknemer! </p>
-            <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
+            <!-- <p><a href="#"> <span class="icon-arrow-right small"></span></a></p> -->
           </div>
           <div class="text-center p-4 item" data-aos="fade">
             <span class="flaticon-worker display-3 mb-3 d-block text-primary"></span>
 
             <h2 class="h4">Geen website voor recruitmentbureaus, maar enkel voor werkgevers en werkzoekenden.</h2>
             <p>Wij geloven dat het juist de bedrijven de expertise hebben om de geschikte mensen aan te nemen</p>
-            <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
+            <!-- <p><a href="#"> <span class="icon-arrow-right small"></span></a></p> -->
           </div>
         </div>
         <div class="d-block d-md-flex">
@@ -121,13 +121,13 @@
           <span class="flaticon-wrench display-3 mb-3 d-block text-primary"></span>
             <h2 class="h4">Scheppen van ruime keuze</h2>
             <p>Wij willen het platform zijn waar IT'ers een baan kunnen vinden. Dat houdt in dat wij vacatures willen aanbieden van front end tot en met de backend en de cybersecurity</p>
-            <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
+            <!-- <p><a href="#"> <span class="icon-arrow-right small"></span></a></p> -->
           </div>
           <div class="text-center p-4 item" data-aos="fade">
             <span class="flaticon-stethoscope display-3 mb-3 d-block text-primary"></span>
             <h2 class="h4">Wij blijven ontwikkelen</h2>
             <p>Wij zijn een website gerund voor en door programmeurs! Omdat wij plezier hebben om met deze website een bijdrage te kunnen leveren aan de maatschappij.</p>
-            <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
+            <!-- <p><a href="#"> <span class="icon-arrow-right small"></span></a></p> -->
           </div>
         </div>
       </div>

@@ -9,8 +9,9 @@ use App\Http\Requests\JobPostRequest;
 use Auth;
 use App\User;
 use App\Category;
-use App\Post;
+use App\Blog;
 use App\Testimonial;
+use DB;
 
 class JobController extends Controller
 {
@@ -21,11 +22,11 @@ class JobController extends Controller
     public function index(){
     	$jobs = Job::latest()->limit(10)->where('status',1)->get();
         $categories = Category::with('jobs')->get();
-        $posts = Post::where('status', 1)->get();
+        $blogs = Blog::all();
         $testimonial = Testimonial::orderBy('id', 'DESC')->first();        
         $companies = Company::get()->random(12);
        
-    	return view('welcome',compact('jobs','companies','categories', 'posts', 'testimonial'));
+    	return view('welcome',compact('jobs','companies','categories', 'blogs', 'testimonial'));
     }
 
     public function show($id,Job $job){
@@ -119,6 +120,10 @@ class JobController extends Controller
             'category_id' => request('category'),
             'position' => request('position'),
             'address' => request('address'),
+            'city' => request('city'),
+            'province' => request('province'),
+            'minimum_salary' => request('minimum_salary'),
+            'maximum_salary' => request('maximum_salary'),
             'type' => request('type'),
             'status' => request('status'),
             'last_date' => request('last_date'),
@@ -140,35 +145,45 @@ class JobController extends Controller
 
     public function allJobs(Request $request) 
     {
-        // front search
-        $search = $request->get('search');
-        $address = $request->get('address');
-        if($search && $address) {
-            $jobs = Job::where('position', 'LIKE', '%'.$search.'%')
-                    ->orWhere('title', 'LIKE', '%'.$search.'%')
-                    ->orWhere('type', 'LIKE', '%'.$search.'%')
-                    ->orWhere('address', 'LIKE', '%'.$address.'%')
-                    ->paginate(10);
-                    
-            return view('jobs.alljobs', compact('jobs'));
+        if ($request->has('category_id')){            
+            
+            if(request()->category_id != "0") {
+                $category = request()->category_id;
+                $categorycomparison = "=";
+            } else {
+                $category = 0;
+                $categorycomparison = "!=";
+            }
 
+            $jobs = Job::get()->where('category_id', $categorycomparison, $category); 
         }
-        // $keyword = $request->get('title');
-        $keyword = request('title');
-        $type = request('type');
-        $category = request('category_id');
-        $address = request('address');
-        if($keyword||$type||$category||$address) {
-            $jobs = Job::where('title', 'LIKE', '%'.$keyword.'%')
-                    ->orWhere('type', $type)
-                    ->orWhere('category_id', $category)
-                    ->orWhere('address', $address)
-                    ->paginate(10);
-                    return view('jobs.alljobs', compact('jobs'));
-        } else {        
-                $jobs = Job::latest()->paginate(10);
-                return view('jobs.alljobs', compact('jobs'));
+        else {
+            $jobs = Job::all();
         }
+        return view('jobs.alljobs', compact('jobs'));
+    }
+
+    public function filterJobs(Request $request)
+    {
+        if(request()->category_id != "0") {
+            $category = request()->category_id;
+            $categorycomparison = "=";
+        } else {
+            $category = 0;
+            $categorycomparison = "!=";
+        }
+
+        if(request()->type != "0") {
+            $type = request()->type;
+            $typecomparison = "=";
+        } else {
+            $type = 0;
+            $typecomparison = "!=";
+        }
+
+        $jobs = Job::get()->where('category_id', $categorycomparison, $category); 
+
+        return view('jobs.alljobs', compact('jobs'));
     }
     public function searchJobs(Request $request) 
     {

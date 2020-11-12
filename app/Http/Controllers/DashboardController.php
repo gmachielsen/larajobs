@@ -96,10 +96,7 @@ class DashboardController extends Controller
         return redirect()->back()->with('message', 'Status updated successfully');
     }
 
-    public function show($id){
-        $post = Post::find($id);
-        return view('admin.read', compact('post'));
-    }
+
 
     public function getAllJobs(){
         $jobs = Job::latest()->paginate();

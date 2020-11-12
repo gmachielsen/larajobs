@@ -14,4 +14,21 @@ class ProfileController extends Controller
 
         return view('dashboard.profiles.index', compact('users'));
     }
+
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        return view('dashboard.profiles.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->save();
+        session()->flash('success', 'Profile updated succesfully');
+        return redirect()->back(); 
+    }
 }

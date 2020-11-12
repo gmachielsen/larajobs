@@ -35,6 +35,7 @@ class BlogController extends Controller
         
             Blog::create([
                 'title' => request('title'),
+                'slug' => str_slug(request('title')),
                 'image'=> $filename,
                 'content' => request('content'),
             ]);

@@ -44,5 +44,7 @@ Route::prefix('dashboard')->name('admin.')->middleware('admin')->group(function(
     Route::post('/staffmembers/{id}/delete', 'StaffController@delete')->name('staffmembers.delete');
 
     Route::get('/profiles', 'ProfileController@index')->name('profiles.index');
+    Route::get('/profiles/{id}/edit', 'ProfileController@edit')->name('profile.edit');
+    Route::post('/profiles/{id}/update', 'ProfileController@update')->name('profile.update');
 });
 

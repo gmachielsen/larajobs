@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Staffmember;
+use App\Blog;
 
 class FrontendController extends Controller
 {
     public function aboutus() 
     {
-        return view('frontend.about');
+        $staffmembers = Staffmember::all();
+        return view('frontend.about', compact('staffmembers'));
     }
 
     public function vacancies() 
@@ -34,5 +37,11 @@ class FrontendController extends Controller
     public function specialpeople()
     {
         return view('frontend.specialpeople');
+    }
+
+    public function blog($id)
+    {
+        $blog = Blog::find($id);
+        return view('frontend.showblog', compact('blog'));
     }
 }

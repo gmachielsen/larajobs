@@ -21,9 +21,14 @@ class CreateJobsTable extends Migration
             $table->string('slug');
             $table->text('description');
             $table->text('roles');
+            $table->text('requirements');
+            $table->integer('minimum_salary');
+            $table->integer('maximum_salary');
             $table->integer('category_id');
             $table->string('position');
             $table->string('address');
+            $table->string('city');
+            $table->string('province');
             $table->string('type');
             $table->string('status');
             $table->date('last_date');
